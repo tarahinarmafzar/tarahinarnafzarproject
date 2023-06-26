@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> طراحی نرم افزار</title>
+    <style>
+        /* استایل‌های بخش بدنه ی سایت */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* استایل هدر */
+        header {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* استایل ناوبری */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* استایل لوگو در ناوبری */
+        nav .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #666;
+        }
+
+        /* استایل بخش‌ها */
+        section {
+            padding: 40px 0;
+            text-align: end;
+        }
+
+        section h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* استایل کانتینر */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* استایل دکمه اسکرول به بالا */
+        .scroll-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            font-size: 18px;
+            line-height: 1;
+            text-align: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+        }
+	
+	/* استایل انیمیشن fade-in */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-animation {
+  animation: fade-in 1s forwards;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- ناوبری -->
+        <nav>
+            <a class="navbar-brand" href="#">لوگو</a> <!-- لوگو در ناوبری -->
+            <ul>
+                <li><a href="#homepage">صفحه اصلی</a></li>
+                <li><a href="#services">خدمات</a></li>
+                <li><a href="#contact">تماس با ما</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <button onclick="changeBackgroundColor('lightblue')">تغییر رنگ پس زمینه</button>
+
+    <!-- بخش خوش آمدگویی -->
+    <section id="welcome" class="bg-light">
+        <div class="container">
+            <h2>خوش آمدید!</h2>
+            <p>لطفاً نام خود را وارد کنید:</p>
+            <input type="text" id="nameInput">
+            <button onclick="welcomeUser()">تایید</button>
+        </div>
+    </section>
+    <br />
+
+    <button onclick="displayTextAndScroll('این یک متن نمونه است.')">نمایش متن</button>
+
+    <!-- المنت جهت نمایش متن و جابجایی به سمت راست صفحه -->
+    <div id="textDiv"></div>
+
+
+
+    <!-- بخش خدمات -->
+    <section id="services">
+        <div class="container">
+            <h2>خدمات ما</h2>
+            <p>توضیحات خدمات اینجا قرار می‌گیرد...</p>
+        </div>
+    </section>
+
+    <!-- بخش تماس با ما -->
+    <section id="contact">
+        <div class="container">
+            <h2>تماس با ما</h2>
+            <p>فرم تماس با ما در اینجا قرار می‌گیرد...</p>
+        </div>
+    </section>
+
+<button onclick="changeTextColor()">تغییر رنگ متن</button>
+
+
+
+    <button class="scroll-to-top" onclick="scrollToTop()">&#8679;</button>
+
+    <script>
+    // تابع جاوا اسکریپت برای نمایش پیام خوش آمدگویی
+    function welcomeUser() {
+        var nameInput = document.getElementById("nameInput");
+        var name = nameInput.value;
+
+        var welcomeSection = document.getElementById("welcome");
+        welcomeSection.innerHTML = "<div class='container'><h2>خوش آمدید، " + name + "!</h2></div>";
+    }
+
+    // تابع جاوا اسکریپت برای اسکرول به بالا
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    // تابع جاوا اسکریپت برای نمایش/عدم نمایش دکمه اسکرول به بالا
+    function toggleScrollButton() {
+        var scrollButton = document.querySelector('.scroll-to-top');
+        if (window.pageYOffset > 1) {
+            scrollButton.style.display = 'block';
+        } else {
+            scrollButton.style.display = 'none';
+        }
+    }
+
+    // تابع جاوا اسکریپت برای تغییر رنگ پس زمینه
+    function changeBackgroundColor(color) {
+        document.body.style.backgroundColor = color;
+    }
+
+    window.addEventListener('scroll', toggleScrollButton);
+
+    // تابع جاوا اسکریپت برای نمایش متن و جابجایی به سمت راست صفحه
+    function displayTextAndScroll(text) {
+        var displayElement = document.createElement('p');
+        displayElement.textContent = text;
+        displayElement.style.animation = "fade-in 1s forwards";
+        var textDiv = document.getElementById("textDiv");
+        textDiv.appendChild(displayElement);
+
+        displayElement.scrollIntoView({ behavior: 'smooth', inline: 'end' });
+    }
+
+    // تابع جاوا اسکریپت برای نمایش متن و اعمال انیمیشن
+    function displayTextAndScroll(text) {
+        var displayElement = document.createElement('p');
+        displayElement.textContent = text;
+        displayElement.classList.add('fade-in-animation'); // اضافه کردن کلاس انیمیشن به المان متن
+        var textDiv = document.getElementById("textDiv");
+        textDiv.appendChild(displayElement);
+
+        displayElement.scrollIntoView({ behavior: 'smooth', inline: 'end' });
+    }
+
+    // تابع جاوا اسکریپت برای تغییر رنگ متن
+    function changeTextColor() {
+        var colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#000000', '#808080'];
+        var randomIndex = Math.floor(Math.random() * colors.length);
+        var selectedColor = colors[randomIndex];
+        document.body.style.color = selectedColor;
+    }
+</script>
+
+</body>
+
+</html>
